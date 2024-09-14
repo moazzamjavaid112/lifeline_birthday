@@ -42,9 +42,10 @@ a {
 #clock-box {
   position: absolute;
   left: 60px;
-  top: 550px;
-  font-size: 28px;
+  top: 570px;
+  font-size: 16px;
   display: none;
+  font-family: cursive;
 }
 #clock-box a {
   font-size: 28px;
@@ -80,10 +81,6 @@ a {
 #message-box{
   position: absolute;
   margin-top:50px;
-  font-family: cursive;
-  font-size: 12px;
-}
-#clock-box{
   font-family: cursive;
   font-size: 12px;
 }
