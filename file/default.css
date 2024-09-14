@@ -84,3 +84,26 @@ a {
   font-family: cursive;
   font-size: 12px;
 }
+
+#text {
+  font-family: 'Brush Script MT', cursive, sans-serif; /* Apply cursive font */
+  font-size: 18px; /* Adjust the base font size */
+  line-height: 1.5; /* Increase line spacing for better readability */
+  color: #333; /* Adjust the color if needed */
+}
+
+#text .say {
+  display: block; /* Ensure each "say" block is treated as a separate paragraph */
+  font-size: 1rem; /* Adjust size if needed (1rem = 16px) */
+}
+
+#text .space {
+  margin-left: 20px; /* Add space if needed */
+}
+
+@media screen and (max-width: 768px) {
+  #text {
+      font-size: 16px; /* Smaller font size for mobile devices */
+  }
+}
+
