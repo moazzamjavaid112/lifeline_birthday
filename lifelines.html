@@ -38,8 +38,6 @@
                 <div id="code">
                     <span class="say"> HAPPY BIRTHDAY انت الحيات
                         Many, many happy returns of the day, Ayeshh! May you live a long, happy life. May Allah always keep you smiling, and may every happiness in the world be at your feet. Happy Birthday, my Ayeshh!</span>
-                    <span class="say">I'LL GIVE YOU</span>
-                    <span class="say">My Beautiful Heart🫀 </span>
                     <span class="say">ALL THE LOVE YOU DESERVE🥰</span>
                     <span class="say">
                         My dearest Ayeshh...
@@ -49,7 +47,6 @@
                         My everything...
                         My life...
                         My chuzi...
-                        My churail...
                         My moon...
                         My world...
                         My love...
@@ -58,11 +55,9 @@
                         My peace...
                         My comfort...
                         My tranquility...
-                        My crazy one...
-                        My kamlii...
-                        My pagal...</span><br>
+                        My crazy one...</span><br>
                     <span class="say">You are the greatest gift Allah has ever given to me. You mean so much to me, Ayeshh. Words will never be enough to describe your place in my life. You always know how to cheer me up. Without you, I'm incomplete. You're like sugar in tea – I can't stop thinking about you. I never want to lose you. You are my everything, Ayeshh.</span><br>
-                    <span class="say">We've had so much fun together, and I find myself crying as I type this because you mean the world to me. You've always been here for me. Our bond is unbreakable, and everything about us is just perfect. I can't bear the thought of losing you. You make me the happiest person in the world, and I could never ask for anyone better in my life than you, Ayeshh.</span><br>
+                    <span class="say">I can't bear the thought of losing you. You make me the happiest person in the world, and I could never ask for anyone better in my life than you, Ayeshh.</span><br>
                     <span class="say"><span class="space"></span></span>
                     <br><br>
                 </div>
@@ -215,46 +210,84 @@
             }));
 
             var textAnimate = eval(Jscex.compile("async", function () {
-                // Define the specific date (e.g., 2002-12-25 20:00:00.002)
-                var together = new Date();
-                together.setFullYear(2002, 11, 25); // Months are 0-indexed (0 = Jan, 11 = Dec)
-                together.setHours(20);              // Set hours
-                together.setMinutes(0);             // Set minutes
-                together.setSeconds(0);             // Set seconds
-                together.setMilliseconds(2);        // Set milliseconds
+    // Define the specific date (e.g., 2005-09-17 00:00:00.000)
+    var together = new Date(2005, 8, 17, 0, 0, 0, 0); // Months are 0-indexed (0 = Jan, 8 = Sep)
+    
+    // Show the animated typewriter text (optional)
+    $("#code").show().typewriter();
 
-                // Show the animated typewriter text (optional)
-                $("#code").show().typewriter();
+    // Show the clock element
+    $("#clock-box").fadeIn(500);
 
-                // Show the clock element
-                $("#clock-box").fadeIn(500);
+    // Run the loop to update the countdown every second
+    while (true) {
+        timeElapse(together); // Calculate and display the time difference
+        $await(Jscex.Async.sleep(1000)); // Wait for 1 second before updating again
+    }
+}));
 
-                // Run the loop to update the countdown every second
-                while (true) {
-                    timeElapse(together); // Calculate and display the time difference
-                    $await(Jscex.Async.sleep(1000)); // Wait for 1 second before updating again
-                }
-            }));
+// Function to calculate and display the time elapsed since the specific date
+function timeElapse(startDate) {
+    var now = new Date(); // Current date and time
+    
+    // Calculate years
+    var years = now.getFullYear() - startDate.getFullYear();
+    var months = now.getMonth() - startDate.getMonth();
+    var days = now.getDate() - startDate.getDate();
 
-            // Function to calculate and display the time elapsed since the specific date
-            function timeElapse(startDate) {
-                var now = new Date(); // Current date and time
-                var timeDiff = now - startDate; // Get the difference in milliseconds
+    // Adjust for negative days and months
+    if (days < 0) {
+        months--;
+        days += daysInMonth(now.getFullYear(), now.getMonth() - 1);
+    }
+    if (months < 0) {
+        years--;
+        months += 12;
+    }
 
-                // Calculate the days, hours, minutes, and seconds from the time difference
-                var days = Math.floor(timeDiff / (1000 * 60 * 60 * 24)); // Convert ms to days
-                var hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)); // Remaining hours
-                var minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60)); // Remaining minutes
-                var seconds = Math.floor((timeDiff % (1000 * 60)) / 1000); // Remaining seconds
+    // Calculate hours, minutes, and seconds
+    var hours = now.getHours() - startDate.getHours();
+    var minutes = now.getMinutes() - startDate.getMinutes();
+    var seconds = now.getSeconds() - startDate.getSeconds();
 
-                // Update the display (You can modify this part according to your HTML structure)
-                $("#clock-box").html(
-                    days + " days " +
-                    hours + " hours " +
-                    minutes + " minutes " +
-                    seconds + " seconds "
-                );
-            }
+    if (seconds < 0) {
+        minutes--;
+        seconds += 60;
+    }
+    if (minutes < 0) {
+        hours--;
+        minutes += 60;
+    }
+    if (hours < 0) {
+        days--;
+        hours += 24;
+    }
+
+    // If days become negative, adjust the month and year calculations
+    if (days < 0) {
+        months--;
+        days += daysInMonth(now.getFullYear(), now.getMonth() - 1);
+    }
+    if (months < 0) {
+        years--;
+        months += 12;
+    }
+
+    // Update the display
+    $("#clock-box").html(
+        years + " years " +
+        months + " months " +
+        days + " days " +
+        hours + " hours " +
+        minutes + " minutes " +
+        seconds + " seconds "
+    );
+}
+
+// Helper function to get the number of days in a month
+function daysInMonth(year, month) {
+    return new Date(year, month + 1, 0).getDate();
+}
 
 
             var runAsync = eval(Jscex.compile("async", function () {
