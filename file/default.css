@@ -123,5 +123,11 @@ a {
     top: 20px;
     position: absolute;
   }
+
+  #canvas {
+    margin: 0 auto;
+    width: 1100px;
+    height: 1180px;
+  }
 }
 
